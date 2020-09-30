@@ -6,7 +6,7 @@ title = "Slots"
 minWidth = 400
 minHeight = 400
 maxWidth = 400
-maxHeight = 400
+maxHeight = 500
 windowWidth = "400"
 windowHeight = "400"
 offsetx = "200"
@@ -78,9 +78,7 @@ amtInputLabel.grid(column=0, row=0, padx=5)
 amtInput.grid     (column=1, row=0, padx=5)
 spinBtn.grid      (column=2, row=0, padx=5)
 
-# bind "event listeners" to elements
-
-#--------------------
+# bind event listeners to elements
 
 
 root.mainloop()
