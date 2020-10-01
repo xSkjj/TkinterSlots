@@ -61,7 +61,7 @@ def slots(amt):
     
     bal -= amt
     
-    balLabel["text"] = "Balance: {}".format(bal)
+    balLabel["text"] = f"Balance: {bal}"
     balLabel.update()
 
     IDsymA = slotsDisplay.find_withtag("symA")[0]
@@ -89,14 +89,14 @@ def slots(amt):
 
     if symA == symB and symB == symC:
         bal += amt*100
-        output["text"] = "You spent {} and won {} !!!".format(amt, amt*100)
+        output["text"] = f"You spent {amt} and won {amt*100} !!!"
     elif symA == symB or symA == symC or symB == symC:
         bal += amt*3
-        output["text"] = "You spent {} and won {} !".format(amt, amt*3)
+        output["text"] = f"You spent {amt} and won {amt*3} !"
     else:
-        output["text"] = "You spent {} and lost everything.".format(amt)
+        output["text"] = f"You spent {amt} and lost everything."
 
-    balLabel["text"] = "Balance: {}".format(bal)
+    balLabel["text"] = f"Balance: {bal}"
     
     spinBtn.update()
     spinBtn["state"] = NORMAL
@@ -152,7 +152,7 @@ spinBtn = Button(userInputs,
                  relief  = FLAT)
 
 balLabel = Label(root,
-                 text = "Balance: {}".format(bal),
+                 text = f"Balance: {bal}",
                  font = "Arial 10 bold",
                  fg   = "gold",
                  bg   = bgColor)
