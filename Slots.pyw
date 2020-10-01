@@ -53,14 +53,14 @@ def slots(amt):
     output["text"] = "spinning..."
 
     from random import randint
-    
+
     symbols = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "$", "%", "&", "?", "#"]
 
     spinBtn["state"] = DISABLED
     spinBtn.update()
-    
+
     bal -= amt
-    
+
     balLabel["text"] = f"Balance: {bal}"
     balLabel.update()
 
@@ -97,7 +97,7 @@ def slots(amt):
         output["text"] = f"You spent {amt} and lost everything."
 
     balLabel["text"] = f"Balance: {bal}"
-    
+
     spinBtn.update()
     spinBtn["state"] = NORMAL
 
