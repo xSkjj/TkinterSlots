@@ -24,30 +24,32 @@ root["background"] = bgColor
 
 
 
-# define functions
+# try to fire the slots function with the given input
 def trySpin():
     amt = amtInput.get()
-    #try:
-    int(amt)
-    amtInput["bg"] = "#404040"
-    slots(int(amt))
-    #except:
-    #    amtInput["bg"] = "#b00000"
-    #    if amt == "":
-    #        output["text"] = "Amount is empty"
-    #    else:
-    #        output["text"] = "Amount is not a valid number"
+    try:
+        int(amt)
+        amtInput["bg"] = "#404040"
+        slots(int(amt))
+    except: # if it fails, tell the user why
+        amtInput["bg"] = "#b00000"
+        if amt == "":
+            output["text"] = "Amount is empty"
+        else:
+            output["text"] = "Amount is not a valid number"
 
 # slots function
 bal = 1000
 def slots(amt):
     global bal
-    
+
+    # if the amount is higher than the balance, stop the function
     if amt > bal:
         amtInput["bg"] = "#b00000"
         output["text"] = "You don't have enough credits."
         return
 
+    # slots stuff or something
     output["text"] = "spinning..."
 
     from random import randint
@@ -60,29 +62,30 @@ def slots(amt):
     bal -= amt
     
     balLabel["text"] = "Balance: {}".format(bal)
+    balLabel.update()
 
     IDsymA = slotsDisplay.find_withtag("symA")[0]
     IDsymB = slotsDisplay.find_withtag("symB")[0]
     IDsymC = slotsDisplay.find_withtag("symC")[0]
 
-    for i in range(0, randint(12, 15)):
+    for i in range(0, randint(8, 16)): # range(0, 4) is (0, 1, 2, 3)...
         symA = symB = symC = symbols[randint(0, len(symbols)-1)]
         slotsDisplay.itemconfigure(IDsymA, text=symA)
         slotsDisplay.itemconfigure(IDsymB, text=symB)
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        slotsDisplay.after(20)
-    for i in range(0, randint(12, 15)):
+        slotsDisplay.after(100)
+    for i in range(0, randint(8, 16)): # ...but randint(0, 4) is (0, 1, 2, 3, 4)...
         symB = symC = symbols[randint(0, len(symbols)-1)]
         slotsDisplay.itemconfigure(IDsymB, text=symB)
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        slotsDisplay.after(20)
-    for i in range(0, randint(12, 15)):
+        slotsDisplay.after(100)
+    for i in range(0, randint(8, 16)): # ...this is bullshit
         symC = symbols[randint(0, len(symbols)-1)]
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        slotsDisplay.after(20)
+        slotsDisplay.after(100)
 
     if symA == symB and symB == symC:
         bal += amt*100
@@ -111,8 +114,8 @@ slotsDisplay = Canvas(root,
                       height             = 100,
                       bg                 = "#c3a469",
                       highlightthickness = 2)
-sDw   = int(slotsDisplay["width"])
-sDh   = int(slotsDisplay["height"])
+sDw = int(slotsDisplay["width"])
+sDh = int(slotsDisplay["height"])
 slotsDisplay.create_line(sDw / 3,   0, sDw / 3,     sDh + 4, fill="white")
 slotsDisplay.create_line(sDw / 3*2, 0, sDw / 3 * 2, sDh + 4, fill="white")
 slotsDisplay.create_text(sDw/6-1,   sDh / 2, text="$", font="Consolas 32", fill="white", tags="symA")
