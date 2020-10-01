@@ -41,7 +41,6 @@ def trySpin():
 # slots function
 bal = 1000
 def slots(amt):
-    output["text"] = "spinning..."
     global bal
     
     if amt > bal:
@@ -49,10 +48,14 @@ def slots(amt):
         output["text"] = "You don't have enough credits."
         return
 
+    output["text"] = "spinning..."
+
     from random import randint
-    from time import sleep
     
     symbols = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "$", "%", "&", "?", "#"]
+
+    spinBtn["state"] = DISABLED
+    spinBtn.update()
     
     bal -= amt
     
@@ -68,19 +71,18 @@ def slots(amt):
         slotsDisplay.itemconfigure(IDsymB, text=symB)
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        sleep(0.1)
+        slotsDisplay.after(20)
     for i in range(0, randint(12, 15)):
         symB = symC = symbols[randint(0, len(symbols)-1)]
         slotsDisplay.itemconfigure(IDsymB, text=symB)
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        sleep(0.1)
+        slotsDisplay.after(20)
     for i in range(0, randint(12, 15)):
         symC = symbols[randint(0, len(symbols)-1)]
         slotsDisplay.itemconfigure(IDsymC, text=symC)
         slotsDisplay.update_idletasks()
-        sleep(0.1)
-    sleep(1)
+        slotsDisplay.after(20)
 
     if symA == symB and symB == symC:
         bal += amt*100
@@ -90,7 +92,11 @@ def slots(amt):
         output["text"] = "You spent {} and won {} !".format(amt, amt*3)
     else:
         output["text"] = "You spent {} and lost everything.".format(amt)
+
     balLabel["text"] = "Balance: {}".format(bal)
+    
+    spinBtn.update()
+    spinBtn["state"] = NORMAL
 
 
 # make elements and set their properties
