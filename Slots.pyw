@@ -4,11 +4,11 @@ from tkinter import *
 icon = r".\assets\icon.ico" # icon in the top left corner
 title = "Slots"             # Title at the top of the window
 minWidth = 400              # minimum width you can resize the window to
-minHeight = 250             # minimum height you can resize the window to
+minHeight = 255             # minimum height you can resize the window to
 maxWidth = 400              # maximum width you can resize the window to
-maxHeight = 250             # maximum height you can resize the window to
+maxHeight = 255             # maximum height you can resize the window to
 windowWidth = "400"         # the width of the window when starting
-windowHeight = "250"        # the height of the window when starting
+windowHeight = "255"        # the height of the window when starting
 offsetx = "200"             # distance between the window's and screen's left edge
 offsety = "200"             # distance between the window's and screen's top edge
 bgColor = "#202020"         # background color of the window
@@ -55,6 +55,8 @@ def slots(amt):
     symbols = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "$", "%", "&", "?", "#"]
     
     bal -= amt
+    
+    balLabel["text"] = "Balance: {}".format(bal)
 
     IDsymA = slotsDisplay.find_withtag("symA")[0]
     IDsymB = slotsDisplay.find_withtag("symB")[0]
@@ -88,11 +90,12 @@ def slots(amt):
         output["text"] = "You spent {} and won {} !".format(amt, amt*3)
     else:
         output["text"] = "You spent {} and lost everything.".format(amt)
+    balLabel["text"] = "Balance: {}".format(bal)
 
 
 # make elements and set their properties
 header = Label(root,
-               text = "S L O T S",
+               text = "S  L  O  T  S",
                font = "Impact 24",
                fg   = "gold",
                bg   = bgColor)
@@ -117,7 +120,7 @@ output = Label(root,
                bg   = "black")
 
 userInputs = Frame(root,
-                   bg   = bgColor)
+                   bg = bgColor)
 
 amtInputLabel = Label(userInputs,
                       text = "Amount:",
@@ -139,6 +142,12 @@ spinBtn = Button(userInputs,
                  bg      = "light green",
                  relief  = FLAT)
 
+balLabel = Label(root,
+                 text = "Balance: {}".format(bal),
+                 font = "Arial 10 bold",
+                 fg   = "gold",
+                 bg   = bgColor)
+
 # display the elements
 header.pack()
 slotsDisplay.pack(pady=4)
@@ -148,9 +157,7 @@ amtInputLabel.grid(column=0, row=0, padx=5)
 amtInput.grid     (column=1, row=0, padx=5)
 spinBtn.grid      (column=2, row=0, padx=5)
 amtInput.insert(0, "0")
-
-# bind event listeners to elements
-# None
+balLabel.pack()
 
 
 root.mainloop()
