@@ -1,5 +1,5 @@
 from tkinter import *
-#test
+
 # window settings
 icon = r".\assets\icon.ico" # icon in the top left corner
 title = "Slots"             # Title at the top of the window
