@@ -110,17 +110,16 @@ header = tk.Label(root,
                bg   = bgColor)
 
 slotsDisplay = tk.Canvas(root,
-                      width              = 302,
+                      width              = 300,
                       height             = 100,
                       bg                 = "#c3a469",
-                      highlightthickness = 2)
-sDw = int(slotsDisplay["width"])
-sDh = int(slotsDisplay["height"])
-slotsDisplay.create_line(sDw / 3,   0, sDw / 3,     sDh + 4, fill="white")
-slotsDisplay.create_line(sDw / 3*2, 0, sDw / 3 * 2, sDh + 4, fill="white")
-slotsDisplay.create_text(sDw/6-1,   sDh / 2, text="$", font="Consolas 32", fill="white", tags="symA")
-slotsDisplay.create_text(sDw*0.5,   sDh / 2, text="$", font="Consolas 32", fill="white", tags="symB")
-slotsDisplay.create_text(sDw/1.2+1, sDh / 2, text="$", font="Consolas 32", fill="white", tags="symC")
+                      highlightthickness = 0)
+slotsDisplay.create_rectangle(0,   0,  99, 99, outline="white")
+slotsDisplay.create_rectangle(100, 0, 199, 99, outline="white")
+slotsDisplay.create_rectangle(200, 0, 299, 99, outline="white")
+slotsDisplay.create_text(50,  50, text="$", font="Consolas 32", fill="white", tags="symA")
+slotsDisplay.create_text(150, 50, text="$", font="Consolas 32", fill="white", tags="symB")
+slotsDisplay.create_text(250, 50, text="$", font="Consolas 32", fill="white", tags="symC")
 
 output = tk.Label(root,
                text = "How much credits would you like to use?",
