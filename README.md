@@ -2,4 +2,4 @@
 
 soothe your gambling addiction without losing any real money
 
---> school project - make the console version of the slots project, but with Tkinter
+--> school project - make a Slots program, but with Tkinter
