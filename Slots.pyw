@@ -29,6 +29,10 @@ def trySpin():
     amt = amtInput.get()
     try:
         int(amt)
+        if amt < 0:
+            amtInput["bg"] = "#b00000"
+            output["text"] = "Amount is to tiny"
+            return
         amtInput["bg"] = "#404040"
         slots(int(amt))
     except: # if it fails, tell the user why
