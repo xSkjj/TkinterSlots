@@ -28,8 +28,7 @@ root["background"] = bgColor
 def trySpin():
     amt = amtInput.get()
     try:
-        int(amt)
-        if amt < 0:
+        if int(amt) <= 0:
             amtInput["bg"] = "#b00000"
             output["text"] = "Amount is to tiny"
             return
